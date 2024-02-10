@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./index.css">
+  <title>Law Mitr</title>
+</head>
+<body style="background-color: black;">
+   
+  
+    
+    <div class="container">
+            <h1>Law Mitr</h1>
+            <div class="inner-Container">
+
+                <div class="input-Container">
+                    <div class="Input"></div>
+                    <label for="inputField" id="label">Enter your Query</label>
+                    <textarea  id="inputField" cols="30" rows="15"></textarea>
+                    <button onclick="generateContent()" class="submitButton">Submit</button>
+                </div>  
+                <div id="output"></div>
+           
+            </div>
+           
+
+          
+        </div>
+
+        <script>
+            async function generateContent() {
+            const userInput = document.getElementById('inputField').value;
+            const response = await fetch('/generate', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userInput })
+            });
+            const result = await response.text();
+            document.getElementById('output').innerHTML = result;
+            }
+        </script>
+
+   
+</body>
+</html>
